@@ -1,0 +1,78 @@
+[
+    {
+      "type": "human",
+      "content": "¿Cuántos pedidos tuvo el cliente 102, cuál está pendiente y cuál es el monto total de ese pedido pendiente?"
+    },
+    {
+      "type": "ai",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "buscar_pedidos_cliente",
+          "args": {
+            "cliente_id": 102
+          },
+          "id": "call_abc123",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "type": "tool",
+      "content": "[{\"id_pedido\": \"PED-8801\", \"fecha\": \"2026-09-10\", \"estado\": \"entregado\"}, {\"id_pedido\": \"PED-8802\", \"fecha\": \"2026-09-28\", \"estado\": \"pendiente_pago\"}]",
+      "tool_call_id": "call_abc123",
+      "name": "buscar_pedidos_cliente"
+    },
+    {
+      "type": "ai",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "obtener_detalle_pedido",
+          "args": {
+            "id_pedido": "PED-8802"
+          },
+          "id": "call_def456",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "type": "tool",
+      "content": "{\"id_pedido\": \"PED-8802\", \"monto\": 32000, \"items\": [\"Monitor 27 Pulgadas 144Hz\"], \"descuento_aplicado\": 1500}",
+      "tool_call_id": "call_def456",
+      "name": "obtener_detalle_pedido"
+    },
+    {
+      "type": "ai",
+      "content": "El cliente 102 tuvo un total de 2 pedidos. El pedido que se encuentra pendiente de pago es el PED-8802, cuyo monto total es de $32.000 (Monitor 27 Pulgadas 144Hz)."
+    },
+    {
+      "type": "human",
+      "content": "¿Y cuál era el monto y los ítems del otro pedido que ya fue entregado?"
+    },
+    {
+      "type": "ai",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "obtener_detalle_pedido",
+          "args": {
+            "id_pedido": "PED-8801"
+          },
+          "id": "call_ghi789",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "type": "tool",
+      "content": "{\"id_pedido\": \"PED-8801\", \"monto\": 14500, \"items\": [\"Teclado Mecánico RGB\", \"Mouse Inalámbrico\"], \"descuento_aplicado\": 0}",
+      "tool_call_id": "call_ghi789",
+      "name": "obtener_detalle_pedido"
+    },
+    {
+      "type": "ai",
+      "content": "El pedido entregado (PED-8801) tuvo un monto total de $14.500 e incluyó los siguientes ítems: Teclado Mecánico RGB y Mouse Inalámbrico."
+    }
+  ]
